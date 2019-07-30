@@ -17,6 +17,7 @@ import com.app.cdac.acts.mrcomforty.pojos.Booking;
 import com.app.cdac.acts.mrcomforty.services.AddressService;
 import com.app.cdac.acts.mrcomforty.services.BookingService;
 import com.app.cdac.acts.mrcomforty.services.ServiceProviderService;
+import com.app.cdac.acts.mrcomforty.controller.BookingController;
 
 @CrossOrigin(origins = "http://localhost:4200")
 @RestController
@@ -47,9 +48,10 @@ public class BookingController {
 			System.out.println("working status"+ workingStatus);
 			System.out.println("pro_id"+ser_pro_id);
 			ser_pro_service.updateServiceProviderWorkingStatus( workingStatus, ser_pro_id);
+			service.sendcust(bookingId);
+			service.sendProv(bookingId);
 			return ResponseEntity.ok().body(bookingId);
-			//return "redirect:/mrcomforty/serviceprovider/" + ser_pro_id+"/"+1;
-			//return new ResponseEntity<>(booking_id,HttpStatus.OK);
+			
 		
 	}
 	
@@ -60,7 +62,6 @@ public class BookingController {
 			
 			Booking details=service.getBookingById(booking_id);
 			System.out.println("deatils "+details);
-			//return new ResponseEntity<>(details,HttpStatus.OK);
 			return ResponseEntity.ok().body(details);
 		}catch(Exception e)
 		{
@@ -68,29 +69,7 @@ public class BookingController {
 		}
 	}
 	
-/*	@PutMapping("bookinghours/{booking_id}/{hours}")
-	public void UpdateBookingHours(@PathVariable int booking_id,@PathVariable int hours)
-	{
-	try{
-			service.UpdateBookingHours(hours, booking_id);
-			System.out.println("Booking hours updated");
-		}catch(Exception e)
-		{
-			System.out.println(e.getMessage());
-		}
-	}
-	
-	@PutMapping("bookingstatus/{booking_id}/{status}")
-	public void UpdateBookingStatus(@PathVariable int booking_id,@PathVariable int status)
-	{
-	try{
-			service.UpdateBookingStatus(status, booking_id);
-			System.out.println("Booking status updated");
-		}catch(Exception e)
-		{
-			System.out.println(e.getMessage());
-		}
-	}*/
+
 	
 	@GetMapping("/customerbook/{customer_id}")
 	public ResponseEntity<?> getBookingByCustomerId(@PathVariable int customer_id)
@@ -135,19 +114,7 @@ public class BookingController {
 	}
 	
 	
-	/*@GetMapping("serviceproviderbook/{serviceprovider_id}")
-	public ResponseEntity<?> getBookingByServiceProviderId(@PathVariable int serviceprovider_id)
-	{
-		try{
-			
-			Booking details=service.getBookingByServiceProId(serviceprovider_id);
-			System.out.println("deatils "+details);
-			return new ResponseEntity<>(details,HttpStatus.OK);
-		}catch(Exception e)
-		{
-			return new ResponseEntity<>(e.getMessage(),HttpStatus.NO_CONTENT);
-		}
-	}*/
+	
 	
 
 }

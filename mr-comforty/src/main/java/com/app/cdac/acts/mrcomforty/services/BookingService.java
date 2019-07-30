@@ -17,5 +17,15 @@ public interface BookingService {
 	public Integer getAllServiceProvidersIdNotBookedAtDate(int serviceProviderId,Date date);
 	public List<Booking> getCurrentBookingDetailsByCustomerId(int id);
 	public List<Booking> getHistoryOfBookingDetailsByCustomerId(int id);
+	public String getProviderName(int id);
+	public String getProviderNumber(int id);
+	public int getCustomerId(int id);
+	public int getProviderId(int id);
+	public String getCustomerName(int id);
+	public String getCustomerNumber(int id);
+	public String sendSms(String mess,String number);
+	public void sendcust(int bookingId);
+	public void sendProv(int bookingId);
+	
 
 }

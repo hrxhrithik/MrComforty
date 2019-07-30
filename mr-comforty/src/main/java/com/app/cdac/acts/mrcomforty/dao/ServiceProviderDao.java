@@ -42,4 +42,10 @@ public interface ServiceProviderDao extends JpaRepository<ServiceProvider, Integ
 	
 	@Query("select sp from ServiceProvider sp where sp.authenticStatus!=1")
 	List<ServiceProvider> getAllAuthenticatedServiceProvider();
+	
+	@Query(value = "select name from service_provider where  service_provider_id=? ", nativeQuery = true)
+	String getNameByProviderName(int providerId);
+
+	@Query(value = "select phone_no from service_provider where  service_provider_id=? ", nativeQuery = true)
+	String getNumberByProviderId(int providerId);
 }
